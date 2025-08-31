@@ -1,0 +1,9 @@
+{
+  "daily_usage_hours": 4,
+  "posts": [
+    {"text": "Check this amazing news!", "verified": false, "comments": 5},
+    {"text": "Had a bad day...", "verified": true, "comments": 2}
+  ],
+  "profile_public": true,
+  "negative_comments": 3
+}
