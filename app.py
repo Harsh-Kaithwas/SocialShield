@@ -7,30 +7,26 @@ import matplotlib.pyplot as plt
 # Page setup
 st.set_page_config(page_title="SocialShield", layout="wide")
 st.title("SocialShield – Social Media Impact Assessment (Prototype)")
-st.write("Analyze a social media post/user for risk, sentiment, toxicity & fake news probability")
+st.write("Enter any username, URL, or hashtag to generate a social media impact report.")
 
 # Load mock data
 with open("mock_data.json") as f:
     data = json.load(f)
 
-# ---- Sidebar Input ----
-st.sidebar.header("Enter Post Details for Analysis")
-username = st.sidebar.text_input("Username", "tech_guru")
-caption = st.sidebar.text_area("Caption", "I love AI and tech innovations!")
-hashtag = st.sidebar.text_input("Hashtags", "#AI #Tech")
-url = st.sidebar.text_input("URL", "https://example.com/post1")
-analyze_btn = st.sidebar.button("Analyze")
+# ---- Single Input Field ----
+user_input = st.text_input("Enter Username / URL / Hashtag / Caption", "tech_guru")
+analyze_btn = st.button("Analyze")
 
 # ---- Dummy Analysis Function ----
-def dummy_analysis(input_username, input_caption, input_hashtag, input_url):
+def dummy_analysis(input_text):
     # Check if username exists in mock_data, else generate random
-    user_data = next((u for u in data["users"] if u["username"] == input_username), None)
+    user_data = next((u for u in data["users"] if input_text in (u["username"], u["url"], u["hashtag"], u["caption"])), None)
     if not user_data:
         user_data = {
-            "username": input_username,
-            "caption": input_caption,
-            "hashtag": input_hashtag,
-            "url": input_url,
+            "username": input_text,
+            "caption": input_text,
+            "hashtag": input_text,
+            "url": "https://example.com/" + input_text,
             "sentiment": random.choice(["Positive","Neutral","Negative"]),
             "toxicity": random.choice(["Low","Medium","High"]),
             "risk_score": random.randint(10,90),
@@ -49,9 +45,9 @@ def get_color(score):
 
 # ---- Display Analysis ----
 if analyze_btn:
-    result = dummy_analysis(username, caption, hashtag, url)
+    result = dummy_analysis(user_input)
     
-    st.subheader(f"Analysis for @{result['username']}")
+    st.subheader(f"Analysis for '{result['username']}'")
     
     col1, col2, col3, col4 = st.columns(4)
     
