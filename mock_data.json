@@ -1,9 +1,24 @@
 {
-  "daily_usage_hours": 4,
-  "posts": [
-    {"text": "Check this amazing news!", "verified": false, "comments": 5},
-    {"text": "Had a bad day...", "verified": true, "comments": 2}
-  ],
-  "profile_public": true,
-  "negative_comments": 3
+  "users": [
+    {
+      "username": "tech_guru",
+      "caption": "I love AI and tech innovations!",
+      "hashtag": "#AI #Tech #Innovation",
+      "url": "https://example.com/post1",
+      "sentiment": "Positive",
+      "toxicity": "Low",
+      "risk_score": 15,
+      "fake_news_prob": 5
+    },
+    {
+      "username": "daily_news",
+      "caption": "Breaking news! Something shocking happened!",
+      "hashtag": "#News #Update #Breaking",
+      "url": "https://example.com/post2",
+      "sentiment": "Neutral",
+      "toxicity": "Medium",
+      "risk_score": 45,
+      "fake_news_prob": 40
+    }
+  ]
 }
